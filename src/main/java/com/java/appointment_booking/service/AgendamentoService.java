@@ -2,6 +2,7 @@ package com.java.appointment_booking.service;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Objects;
 
 import org.springframework.stereotype.Service;
@@ -42,7 +43,7 @@ public class AgendamentoService {
 		agendamentoRepository.deleteByDataHoraAgendamentoAndCliente(dataHoraAgendamento, cliente);
 	}
 
-	public AgendamentoEntity buscarAgendamentosDia(LocalDate data) {
+	public List<AgendamentoEntity> buscarAgendamentosDia(LocalDate data) {
 		LocalDateTime primeiraHoraDia = data.atStartOfDay();
 		LocalDateTime horaFinalDia = data.atTime(23, 59, 59);
 

@@ -1,6 +1,7 @@
 package com.java.appointment_booking.infrastructure.repository;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.java.appointment_booking.infrastructure.entity.AgendamentoEntity;
@@ -15,7 +16,8 @@ public interface AgendamentoRepository extends JpaRepository<AgendamentoEntity, 
 	@Transactional
 	void deleteByDataHoraAgendamentoAndCliente(LocalDateTime dataHoraAgendamento, String cliente);
 
-	AgendamentoEntity findByDataHoraAgendamentoBetween(LocalDateTime dataHorainicial, LocalDateTime dataHoraFinal);
-	
+	List<AgendamentoEntity> findByDataHoraAgendamentoBetween(LocalDateTime dataHorainicial,
+			LocalDateTime dataHoraFinal);
+
 	AgendamentoEntity findByDataHoraAgendamentoAndCliente(LocalDateTime dataHoraAgendamento, String cliente);
 }

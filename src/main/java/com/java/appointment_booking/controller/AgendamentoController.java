@@ -2,6 +2,7 @@ package com.java.appointment_booking.controller;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -41,7 +42,7 @@ public class AgendamentoController {
 	}
 
 	@GetMapping
-	public ResponseEntity<AgendamentoEntity> buscarAgendamentosDia(@RequestParam LocalDate data) {
+	public ResponseEntity<List<AgendamentoEntity>> buscarAgendamentosDia(@RequestParam LocalDate data) {
 		return ResponseEntity.ok().body(agendamentoService.buscarAgendamentosDia(data));
 	}
 
