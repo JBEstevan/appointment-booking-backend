@@ -18,18 +18,23 @@ public class AgendamentoService {
 
 	private final AgendamentoRepository agendamentoRepository;
 
+	public AgendamentoService(AgendamentoRepository agendamentoRepository) {
+		this.agendamentoRepository = agendamentoRepository;
+	}
+
 	public AgendamentoEntity salvarAgendamento(AgendamentoEntity agendamento) {
-		
+
 		LocalDateTime horaAgendamento = agendamento.getDataHoraAgendamento();
 		LocalDateTime horaFim = agendamento.getDataHoraAgendamento().plusHours(1);
-		
-		AgendamentoEntity agendados = agendamentoRepository.findByServicoAndDataHoraAgendamentoBetween(agendamento.getServico, horaAgendamento, horaFim)
-	
-		if(Objects.nonNull(agendados)) {
+
+		AgendamentoEntity agendados = agendamentoRepository
+				.findByServicoAndDataHoraAgendamentoBetween(agendamento.getServico(), horaAgendamento, horaFim);
+
+		if (Objects.nonNull(agendados)) {
 			throw new RuntimeException("Horário já está preenchido.");
 		}
 		return agendamentoRepository.save(agendamento);
-	
+
 	}
 
 	public void deletarAgendamento(LocalDateTime dataHoraAgendamento, String cliente) {
